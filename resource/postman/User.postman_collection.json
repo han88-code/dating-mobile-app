@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "845631c8-b364-42c5-ac8c-2cd2e87ff754",
+		"name": "User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11118273"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Password has been set\", () => {",
+							"    pm.expect(pm.response.json()).to.have.property('password')",
+							"})",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"han@gmail.com\",\n    \"password\": \"123\",\n    \"name\": \"Han\",\n    \"gender\": \"male\",\n    \"city\": \"jakarta\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/register",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"User has found\", () => {",
+							"    pm.expect(pm.response.json()).to.have.property('user_id')",
+							"})",
+							"pm.test(\"user_id is valid\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.user_id).to.gt(0);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"han@gmail.com\",\n    \"password\": \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Home",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"User has found\", () => {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.user.user_id).to.gt(0);",
+							"})",
+							"pm.test(\"Partner object found\", function () {",
+							"     pm.expect(pm.response.json()).to.have.property('partner')",
+							"});",
+							"pm.test(\"Message object found\", function () {",
+							"     pm.expect(pm.response.json()).to.have.property('partner')",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"han@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/home",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"home"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Swipe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Partner object found\", function () {",
+							"     pm.expect(pm.response.json()).to.have.property('partner')",
+							"});",
+							"pm.test(\"Message object found\", function () {",
+							"     pm.expect(pm.response.json()).to.have.property('partner')",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"han@gmail.com\",\n    \"viewed_user_id\": 2,\n    \"status\": \"RIGHT\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/swipe",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verified",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"User has found\", () => {",
+							"    pm.expect(pm.response.json()).to.have.property('user_id')",
+							"})",
+							"pm.test(\"user_id is valid\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.user_id).to.gt(0);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"han@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/verified",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"verified"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Message object found\", () => {",
+							"    pm.expect(pm.response.json()).to.have.property('message')",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"han@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/logout",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
