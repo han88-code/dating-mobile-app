@@ -1,6 +1,4 @@
 # dating-mobile-app
-Dealls Technical Test – Software Engineer
-
 In this Dating Mobile App project provide some basic backend system functionalities that similar to Tinder or Bumble.
 - User able to register, login & logout.
 - User able to view, swipe left (pass) & swipe right (like) 10 other user (dating) profiles in total (pass + like) in 1 day.
